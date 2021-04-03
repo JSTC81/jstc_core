@@ -1,15 +1,9 @@
 import acorn from '../../../../type/type';
 import { Out, print } from '../../..';
 import VariableDeclaration from './VariableDeclaration';
-/**
- * @module functrion
- * @param code
- * @param out
- */
-
-export default (
-    code: acorn.Body3,
-    out: acorn.OUT,
+interface Props {
+    code: acorn.Body3;
+    out: acorn.OUT;
     conversion: {
         Literal: (data: string) => string;
         BinaryExpression: (data: string[]) => string;
@@ -19,8 +13,14 @@ export default (
             let: (data: string[]) => string;
             const: (data: string[]) => string;
         };
-    },
-): acorn.OUT => {
+    };
+}
+/**
+ * @module functrion
+ * @param code
+ * @param out
+ */
+export default ({ code, out, conversion }: Props): acorn.OUT => {
     let argument: { name: string[]; out: string } = { name: [], out: '' };
     for (const params of code.params) {
         argument.name.push(params.name);

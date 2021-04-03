@@ -15,7 +15,7 @@ export default function parse({
 }): acorn.OUT {
     for (const code of codes.body) {
         if (code.type === 'FunctionDeclaration') {
-            out = Function(code, out, conversion.Function);
+            out = Function({ code, out, conversion: conversion.Function });
         }
     }
     for (const code of codes.body) {

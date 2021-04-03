@@ -6,7 +6,5 @@ function Name() {
 for (let i = 1; i < 10; i++) {
     console.log(i);
 }
-const a = 0;
-Name(a)
 console.log("Hello")
-console.log(2 + 9 - 5 + 8 + 9);
+console.log(2 + 9 - 5 + 8 + 9 * 2);

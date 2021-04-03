@@ -22,10 +22,13 @@ const check = (file: string): boolean => {
         fs.statSync(file);
         hasfaile = true;
     } catch (err) {
+        console.log(err);
+
         hasfaile = false;
     }
     return hasfaile;
 };
+
 /**
  *
  * @module read

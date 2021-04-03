@@ -11,7 +11,10 @@ export default (
     out: acorn.OUT,
     conversion: { BinaryExpression: (data: string[]) => string },
 ) => {
-    let t = { name: '', raw: '' };
+    let t = {
+        name: '',
+        raw: '',
+    };
     if (c.expression.arguments[0].left.type === 'Identifier') {
         t.name = c.expression.arguments[0].left?.name;
     }
@@ -85,6 +88,17 @@ export default (
                         t.name += `${node.left.operator}${right}`;
                     }
                 }
+            }
+        }
+        if (node.right?.type == 'BinaryExpression') {
+            if (node.right.left.type === 'Literal') {
+                t.raw += `${node.right.left.raw}${node.right.operator}${node.right.right.raw}`;
+            } else if (node.right.left.type === 'BinaryExpression') {
+                if (node.right.left.left.type == 'Literal') {
+                    t.raw += `${node.right.left.left.raw}${node.right.left.operator}${node.right.left.right.raw}`;
+                }
+            }
+            {
             }
         }
     });
